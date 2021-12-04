@@ -9,11 +9,14 @@ const useStyles = createUseStyles({
   },
 });
 
-export default function Tracks({ tracks }) {
+export default function Tracks({ filteredTracks }) {
   const classes = useStyles();
+  console.log(filteredTracks);
   return (
     <Col lg={8} className={classes.column}>
-      {tracks ? tracks.map((track) => <TrackTile track={track} />) : ""}
+      {filteredTracks
+        ? filteredTracks.map((track) => <TrackTile track={track} />)
+        : ""}
     </Col>
   );
 }

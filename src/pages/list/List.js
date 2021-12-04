@@ -1,13 +1,12 @@
 import React from 'react'
 import { getTracks } from "../../services/api";
-import Tracks from "../../components/list/Tracks";
-import Filters from "../../components/list/Filters";
+import Tracks from "../../components/list/tracks/Tracks";
+import Filters from "../../components/list/filters/Filters";
 import { Container, Row } from "react-bootstrap";
 
 export default function List() {
   const [tracks, setTracks] = React.useState("");
-
-  console.log(tracks);
+  const [filteredTracks, setFilteredTracks] = React.useState("");
 
   React.useEffect(() => {
     (async function () {
@@ -19,8 +18,8 @@ export default function List() {
   return (
     <Container fluid>
       <Row>
-        <Filters />
-        <Tracks tracks={tracks} />
+        <Filters tracks={tracks} setFilteredTracks={setFilteredTracks} />
+        <Tracks filteredTracks={filteredTracks} />
       </Row>
     </Container>
   );
