@@ -11,11 +11,12 @@ const useStyles = createUseStyles({
 
 export default function Tracks({ filteredTracks }) {
   const classes = useStyles();
-  console.log(filteredTracks);
   return (
     <Col lg={8} className={classes.column}>
       {filteredTracks
-        ? filteredTracks.map((track) => <TrackTile track={track} />)
+        ? filteredTracks.map((track) => (
+            <TrackTile key={track.id} track={track} />
+          ))
         : ""}
     </Col>
   );

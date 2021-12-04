@@ -23,6 +23,7 @@ export default function RangeFilter({
         onAfterChange={(value) => {
           setFilter([value[0] / [multiplier], value[1] / [multiplier]]);
         }}
+        step={1 / [multiplier]}
       />
     </>
   );
