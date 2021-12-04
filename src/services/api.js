@@ -6,7 +6,7 @@ export async function authorizeSpotify() {
   return data;
 }
 
-export async function getSongs() {
+export async function getTracks() {
   const headers = {
     Authorization: `Token ${getTokenFromStorage()}`,
   };

@@ -1,21 +1,27 @@
 import React from 'react'
-import { getSongs } from '../../services/api'
-
+import { getTracks } from "../../services/api";
+import Tracks from "../../components/list/Tracks";
+import Filters from "../../components/list/Filters";
+import { Container, Row } from "react-bootstrap";
 
 export default function List() {
+  const [tracks, setTracks] = React.useState("");
 
-    const [songs, setSongs] = React.useState("")
+  console.log(tracks);
 
-    React.useEffect(() => {
-        (async function() {
-          const songs = await getSongs();
-          setSongs(songs);
-        })();
-    }, []);
+  React.useEffect(() => {
+    (async function () {
+      const tracks = await getTracks();
+      setTracks(tracks);
+    })();
+  }, []);
 
-    console.log(songs)
-
-    return (
-        "Yes"
-    )
+  return (
+    <Container fluid>
+      <Row>
+        <Filters />
+        <Tracks tracks={tracks} />
+      </Row>
+    </Container>
+  );
 }
