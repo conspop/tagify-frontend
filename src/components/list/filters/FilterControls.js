@@ -1,33 +1,12 @@
 import React from "react";
 import RangeFilter from "./RangeFilter";
+import useRangeFilter from "./useRangeFilter";
 
 export default function FilterControls({ tracks, setFilteredTracks }) {
-  const [danceability, setDanceability] = React.useState(null);
-  const [acousticness, setAcousticness] = React.useState(null);
-
-  const filterDanceability = (tracks) => {
-    if (danceability) {
-      return tracks.filter(
-        (track) =>
-          track.danceability >= danceability[0] &&
-          track.danceability <= danceability[1]
-      );
-    } else {
-      return tracks;
-    }
-  };
-
-  const filterAcousticness = (tracks) => {
-    if (acousticness) {
-      return tracks.filter(
-        (track) =>
-          track.acousticness >= acousticness[0] &&
-          track.acousticness <= acousticness[1]
-      );
-    } else {
-      return tracks;
-    }
-  };
+  const [danceability, setDanceability, filterDanceability] =
+    useRangeFilter("danceability");
+  const [acousticness, setAcousticness, filterAcousticness] =
+    useRangeFilter("acousticness");
 
   React.useEffect(() => {
     let result = tracks;
@@ -35,7 +14,14 @@ export default function FilterControls({ tracks, setFilteredTracks }) {
     result = filterDanceability(result);
     result = filterAcousticness(result);
     setFilteredTracks(result);
-  }, [tracks, danceability, acousticness, setFilteredTracks]);
+  }, [
+    tracks,
+    danceability,
+    acousticness,
+    setFilteredTracks,
+    filterAcousticness,
+    filterDanceability,
+  ]);
 
   return (
     <>
