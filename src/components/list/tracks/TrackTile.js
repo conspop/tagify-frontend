@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
     gridArea: "image",
   },
   image: {
-    width: "100%",
+    width: "75%",
     padding: 5,
   },
   title: {
